@@ -1,0 +1,106 @@
+[
+  {
+    "Color": "Black",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Pericord",
+    "ID": 304,
+    "Name": "PericordBlackLarge"
+  },
+  {
+    "Color": "Blue",
+    "Size": "Medium",
+    "Price": 30,
+    "Style": "Retractable",
+    "ID": 402,
+    "Name": "RetractableBlueMedium"
+  },
+  {
+    "Color": "Pink",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Nylon",
+    "ID": 103,
+    "Name": "NylonPinkLarge"
+  },
+  {
+    "Color": "Purple",
+    "Size": "Small",
+    "Price": 20,
+    "Style": "Rope",
+    "ID": 205,
+    "Name": "RopePurpleSmall"
+  },
+  {
+    "Color": "Red",
+    "Size": "Medium",
+    "Price": 30,
+    "Style": "Pericord",
+    "ID": 301,
+    "Name": "PericordRedMedium"
+  },
+  {
+    "Color": "Pink",
+    "Size": "Small",
+    "Price": 20,
+    "Style": "Retractable",
+    "ID": 403,
+    "Name": "RetractablePinkSmall"
+  },
+  {
+    "Color": "Yellow",
+    "Size": "Small",
+    "Price": 20,
+    "Style": "Rope",
+    "ID": 206,
+    "Name": "RopeYellowSmall"
+  },
+  {
+    "Color": "Blue",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Nylon",
+    "ID": 102,
+    "Name": "NylonBlueLarge"
+  },
+  {
+    "Color": "Pink",
+    "Size": "Medium",
+    "Price": 30,
+    "Style": "Rope",
+    "ID": 203,
+    "Name": "RopePinkMedium"
+  },
+  {
+    "Color": "Red",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Pericord",
+    "ID": 301,
+    "Name": "PericordRedLarge"
+  },
+  {
+    "Color": "Yellow",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Nylon",
+    "ID": 106,
+    "Name": "NylonYellowLarge"
+  },
+  {
+    "Color": "Blue",
+    "Size": "Large",
+    "Price": 35,
+    "Style": "Pericord",
+    "ID": 302,
+    "Name": "PericordBlueLarge"
+  },
+  {
+    "Color": "Black",
+    "Size": "Medium",
+    "Price": 30,
+    "Style": "Pericord",
+    "ID": 0,
+    "Name": "PericordBlackMedium"
+  }
+]

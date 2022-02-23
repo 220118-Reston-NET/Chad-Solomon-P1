@@ -1,0 +1,27 @@
+[
+  {
+    "Name": "Ldog",
+    "Address": "534 Sleepy Hollow Place",
+    "Email": "Ldog@dogmail.com"
+  },
+  {
+    "Name": "Jimmy",
+    "Address": "123 Cowboy Fan Street",
+    "Email": "JimmyJoe@gmail.com"
+  },
+  {
+    "Name": "Rhea",
+    "Address": "657  Fetch Alot Lane",
+    "Email": "Rhea@dogmail.com"
+  },
+  {
+    "Name": "Sampson",
+    "Address": "Good Boi Place",
+    "Email": "Samboi@dogmail.com"
+  },
+  {
+    "Name": "Page",
+    "Address": "324 Nap All Day Boulevard",
+    "Email": "Page@gmail.com"
+  }
+]
