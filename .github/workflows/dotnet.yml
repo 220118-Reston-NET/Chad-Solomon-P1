@@ -10,7 +10,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: REST/Poke
+        working-directory: ./
 
     runs-on: ubuntu-latest
 
