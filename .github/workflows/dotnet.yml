@@ -10,7 +10,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: Chad-Solomon-P1
+        working-directory: REST/Poke
 
     runs-on: ubuntu-latest
 
