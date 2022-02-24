@@ -1,5 +1,5 @@
 name: Build, Test, and Deploy API
-# below is stating that a deployment will happen when either a push (push:) or pull (pull:) request is made on the mainbranch 
+# below is stating that a deployment will happen when either a push (push:) or pull (pull:) reques is made on the mainbranch 
 on:
   push:
     branches: [ main ]
