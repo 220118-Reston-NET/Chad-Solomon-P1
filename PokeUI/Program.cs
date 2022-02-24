@@ -79,7 +79,7 @@ while (repeat)
             break;
 
         // case "StoreFrontMenu":
-        //     menu = new StoreFrontMenu(new StoreFrontBL(new SQLStoreFrontRepo()));
+        //     menu = new StoreFrontMenu(new StoreFrontBL(new SQLStoreFrontRepo(_connectionStrings)));
         //     break;
 
         case "StoreFrontMenu":
