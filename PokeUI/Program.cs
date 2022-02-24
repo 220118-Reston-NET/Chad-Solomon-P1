@@ -83,7 +83,7 @@ while (repeat)
         //     break;
 
         case "StoreFrontMenu":
-            menu = new StoreFrontMenu(new InventoryBL(new SQLInventory(_connectionStrings)), new OrderHistoryBL(new OrderHistRepo(_connectionStrings)), new StoreHistoryBL(new SQLStoreHistory()), new StoreFrontBL(new SQLStoreFrontRepo()));
+            menu = new StoreFrontMenu(new InventoryBL(new SQLInventory(_connectionStrings)), new OrderHistoryBL(new OrderHistRepo(_connectionStrings)), new StoreHistoryBL(new SQLStoreHistory()), new StoreFrontBL(new SQLStoreFrontRepo(_connectionStrings)));
             break;
 
 
