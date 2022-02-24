@@ -26,8 +26,9 @@ namespace PokeUI
             Console.WriteLine("[1] Name - " + _newCustomer.Name);
             Console.WriteLine("[2] Address - " + _newCustomer.Address);
             Console.WriteLine("[3] Email - " + _newCustomer.Email);
-            Console.WriteLine("[4] Save");
-            Console.WriteLine("[5] Go back to MainMenu");
+            Console.WriteLine("[4] Password - " + _newCustomer.Password);
+            Console.WriteLine("[5] Save");
+            Console.WriteLine("[6] Go back to MainMenu");
         }
 
         public string UserChoice()
@@ -60,6 +61,13 @@ namespace PokeUI
                     return "CustomerAccount";
 
                 case "4":
+                    Log.Information("Customer entering their password");
+                    Console.WriteLine("Please enter your Password!");
+                    _newCustomer.Password = Console.ReadLine();
+                    Log.Information("Entering Customer password was succesful");
+                    return "CustomerAccount";
+
+                case "5":
                     try
                     {
                         Log.Information("Adding Customer Profile");
@@ -77,7 +85,7 @@ namespace PokeUI
                     return "MainMenu";
 
 
-                case "5":
+                case "6":
                     Log.Information("Returning to Main Menu from Customer account menu");
                     return "MainMenu";
 
