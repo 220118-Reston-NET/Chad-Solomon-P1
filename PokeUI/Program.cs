@@ -75,7 +75,7 @@ while (repeat)
 
         case "PlaceOrderMenu":
             Log.Information("Entering the Place Order Menu");
-            menu = new PlaceOrderMenu(new CustomerBL(new SQLRepository(_connectionStrings)), new StoreFrontBL(new SQLStoreFrontRepo()));
+            menu = new PlaceOrderMenu(new CustomerBL(new SQLRepository(_connectionStrings)), new StoreFrontBL(new SQLStoreFrontRepo(_connectionStrings)));
             break;
 
         // case "StoreFrontMenu":
