@@ -112,8 +112,8 @@ namespace FurrBApi.Controllers
         */
 
         // POST: api/Customer
-        [HttpPost("AddCustomer")] //Post sends data to the server. So here we are sending customer information to the server.
-                                  //we are obtaining the customer info via a form body.
+        [HttpPost] //Post sends data to the server. So here we are sending customer information to the server.
+                   //we are obtaining the customer info via a form body.
         public IActionResult Post([FromQuery] Customer p_cust)
         {
 
@@ -131,9 +131,9 @@ namespace FurrBApi.Controllers
         // PUT: api/Customer/5
         [HttpPut("UpdateCustomer")] //PUT creates a new resource or replaces a representation of the target resource with 
                                     //the target payload.
-        public IActionResult Put(int id, [FromBody] Customer p_cust)
+        public IActionResult Put([FromQuery] Customer p_cust)
         {
-            p_cust._custID = id;
+
 
             // try
             // {
