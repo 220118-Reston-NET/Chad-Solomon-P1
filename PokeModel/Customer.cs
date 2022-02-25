@@ -5,28 +5,28 @@
 
 
         public int _custID { get; set; }
-        // public int CustID
-        // {
-        //     get { return _custID; }
+        public int CustID
+        {
+            get { return _custID; }
 
-        //     set
-        //     {
-        //         if (value > 0)
-        //         {
+            set
+            {
+                if (value > 0)
+                {
 
-        //             _custID = value;
-        //         }
-        //         else
-        //         {
+                    _custID = value;
+                }
+                else
+                {
 
-        //             Console.WriteLine("ID must not be empty");
-        //             Console.WriteLine("Please press enter!");
-        //             Console.ReadLine();
+                    Console.WriteLine("ID must not be empty");
+                    Console.WriteLine("Please press enter!");
+                    Console.ReadLine();
 
-        //         }
+                }
 
-        //     }
-        // }
+            }
+        }
         private string? _name; //{ get; set; }
         public string? Name
         {

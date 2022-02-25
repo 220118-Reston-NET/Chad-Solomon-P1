@@ -21,10 +21,12 @@ namespace FurrBApi.Controllers
     {
 
         private IPokemonBL _custBL;
-        public CustomerController(IPokemonBL p_custBL)
+        private IOrderBL _orderBL;
+        public CustomerController(IPokemonBL p_custBL, IOrderBL p_orderBL)
         {
 
             _custBL = p_custBL;
+            _orderBL = p_orderBL;
         }
 
         //
@@ -71,6 +73,38 @@ namespace FurrBApi.Controllers
             }
         }
 
+        [HttpGet("VerifyCustomer")]
+        public IActionResult VerifyCustomer([FromQuery] string p_email, string p_password)
+        {
+            try
+            {
+
+                return Ok(_custBL.VerifyCustomer(p_email, p_password));
+            }
+            catch (System.Exception)
+            {
+
+                //will return an appropriate status code:
+                return NotFound();
+            }
+        }
+
+        [HttpGet("CustomerOrderHistory")]
+        public IActionResult SearchOrder(int custID)
+        {
+            try
+            {
+
+                return Ok(_orderBL.SearchOrder(custID));
+            }
+            catch (System.Exception)
+            {
+
+                //will return an appropriate status code:
+                return NotFound();
+            }
+        }
+
         /*
             [From Body] means that the action will look inside of the Http request body for information it needs. Similar to above where we are asking the user for an ID #.
 
@@ -78,9 +112,9 @@ namespace FurrBApi.Controllers
         */
 
         // POST: api/Customer
-        [HttpPost("Add")] //Post sends data to the server. So here we are sending customer information to the server.
-                          //we are obtaining the customer info via a form body.
-        public IActionResult Post([FromBody] Customer p_cust)
+        [HttpPost("AddCustomer")] //Post sends data to the server. So here we are sending customer information to the server.
+                                  //we are obtaining the customer info via a form body.
+        public IActionResult Post([FromQuery] Customer p_cust)
         {
 
             try
@@ -95,21 +129,21 @@ namespace FurrBApi.Controllers
         }
 
         // PUT: api/Customer/5
-        [HttpPut("updateby/{id}")] //PUT creates a new resource or replaces a representation of the target resource with 
-                                   //the target payload.
+        [HttpPut("UpdateCustomer")] //PUT creates a new resource or replaces a representation of the target resource with 
+                                    //the target payload.
         public IActionResult Put(int id, [FromBody] Customer p_cust)
         {
             p_cust._custID = id;
 
-            try
-            {
-                return Ok(_custBL.UpdateCustomer(p_cust));
-            }
-            catch (System.Exception exc)
-            {
+            // try
+            // {
+            return Ok(_custBL.UpdateCustomer(p_cust));
+            // }
+            // catch (System.Exception exc)
+            // {
 
-                return Conflict(exc.Message);
-            }
+            //     return Conflict(exc.Message);
+            // }
 
         }
 

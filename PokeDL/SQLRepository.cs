@@ -54,7 +54,7 @@ namespace PokeDL
                 {
                     listOfCustomers.Add(new Customer()
                     {
-                        _custID = reader.GetInt32(0),
+                        CustID = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         Address = reader.GetString(2),
                         Email = reader.GetString(3),
@@ -72,7 +72,7 @@ namespace PokeDL
         {
 
             string sqlQuery = @"update Customer
-                                    set custName = @custName, custAddress = @custAddress, custEmail = @custEmail, @custPassword
+                                    set custName = @custName, custAddress = @custAddress, custEmail = @custEmail, custPassword = @custPassword
                                     where custID = @id;";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
@@ -86,7 +86,7 @@ namespace PokeDL
                 command.Parameters.AddWithValue("@custAddress", p_cust.Address);
                 command.Parameters.AddWithValue("@custEmail", p_cust.Email);
                 command.Parameters.AddWithValue("@custPassword", p_cust.Password);
-                command.Parameters.AddWithValue("@id", p_cust._custID);
+                command.Parameters.AddWithValue("@id", p_cust.CustID);
 
                 command.ExecuteNonQuery();
             }

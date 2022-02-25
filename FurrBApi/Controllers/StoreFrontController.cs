@@ -40,15 +40,15 @@ namespace FurrBApi.Controllers
         [HttpGet("GetInventoryByStoreID{id}")]
         public IActionResult GetInventoryByStoreID(int id)
         {
-            //try
-            //{
-            return Ok(_irepo.GetAllInventoryByStoreID(id));
-            // }
-            //catch (SqlException)
-            // {
+            try
+            {
+                return Ok(_irepo.GetAllInventoryByStoreID(id));
+            }
+            catch (SqlException)
+            {
 
-            // return NotFound();
-            //}
+                return NotFound();
+            }
         }
 
         // POST: api/StoreFront
