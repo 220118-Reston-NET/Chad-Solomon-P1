@@ -90,7 +90,7 @@ namespace FurrBApi.Controllers
         }
 
         [HttpGet("CustomerOrderHistory")]
-        public IActionResult SearchOrder(int custID)
+        public IActionResult SearchOrder([FromQuery] int custID)
         {
             try
             {
