@@ -90,12 +90,12 @@ namespace FurrBApi.Controllers
         }
 
         [HttpGet("CustomerOrderHistory")]
-        public IActionResult SearchOrder([FromQuery] int custID)
+        public IActionResult SearchOrderFilter([FromQuery] int p_custID, string p_filter)
         {
             try
             {
 
-                return Ok(_orderBL.SearchOrder(custID));
+                return Ok(_orderBL.SearchOrderFilter(p_custID, p_filter));
             }
             catch (System.Exception)
             {
@@ -127,6 +127,25 @@ namespace FurrBApi.Controllers
                 return Conflict();
             }
         }
+
+
+        // [HttpPost]
+
+        // public IActionResult Post([FromQuery] int _orderLocation, int _price, int _custID, List<LineItems> _cart)
+        // {
+
+        //     try
+        //     {
+        //         return Ok(_orderBL.AddOrder(_orderLocation, _price, _custID, _cart));
+        //     }
+        //     catch (System.Exception)
+        //     {
+
+        //         return Conflict();
+        //     }
+        // }
+
+
 
         // PUT: api/Customer/5
         [HttpPut("UpdateCustomer")] //PUT creates a new resource or replaces a representation of the target resource with 
