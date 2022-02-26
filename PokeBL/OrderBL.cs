@@ -27,7 +27,7 @@ namespace PokeBL
             List<Order> listOfOrder = _orderRepo.GetAllOrder(custID);
 
             return listOfOrder
-                .Where(order => order._custID == custID)
+                .Where(order => order.CustID == custID)
                 .ToList();
         }
 
