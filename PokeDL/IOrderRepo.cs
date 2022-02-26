@@ -7,7 +7,7 @@ namespace PokeDL
 
         public void AddOrder(int _orderLocation, int _price, int _custID, List<LineItems> _cart);
 
-        public List<Order> GetAllOrder(int custID);
+        public Task<List<Order>> GetAllOrder();
 
         // List<Order> SearchOrder(int custID);
 
