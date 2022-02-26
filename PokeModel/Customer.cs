@@ -159,18 +159,18 @@
 
 
 
-        public Customer()
-        {
+        // public Customer()
+        // {
 
-            Name = "No Name";
-            Address = "No Address";
-            Email = "No Email";
-            _custID = 0;
-            // Orders = new List<Order>();
-            // Leashess = new List<Leashes>();
+        //     Name = "No Name";
+        //     Address = "No Address";
+        //     Email = "No Email";
+        //     _custID = 0;
+        //     // Orders = new List<Order>();
+        //     // Leashess = new List<Leashes>();
 
 
-        }
+        // }
 
         public override string ToString()
         {
