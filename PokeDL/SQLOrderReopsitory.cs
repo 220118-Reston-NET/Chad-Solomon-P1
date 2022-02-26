@@ -79,16 +79,14 @@ namespace PokeDL
 
         }
 
-        public List<Order> GetAllOrder(int custID)
+        public async Task<List<Order>> GetAllOrder()
         {
             List<Order> listOfOrders = new List<Order>();
 
             // string sqlQuery = @"select * from Orders 
             //                     where custID = @custID
             //                     order by orderPrice ";
-            string sqlQuery = @"select orderID, orderLocation, orderPrice, custID, OrderTime from Orders
-                                where custID = @custID
-                                order by orderPrice";
+            string sqlQuery = @"select orderID, orderLocation, orderPrice, custID, OrderTime from Orders";
 
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
@@ -97,7 +95,7 @@ namespace PokeDL
                 con.Open();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@custID", custID);
+                //command.Parameters.AddWithValue("@custID", custID);
                 // command.Parameters.AddWithValue("@custID", custID);
                 // command.Parameters.AddWithValue("@custID", custID);
                 // command.Parameters.AddWithValue("@custID", custID);
