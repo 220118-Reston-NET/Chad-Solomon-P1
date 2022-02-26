@@ -83,10 +83,10 @@ namespace PokeDL
         {
             List<Order> listOfOrders = new List<Order>();
 
-            string sqlQuery = @"select * from Orders 
-                                where custID = @custID
-                                order by orderPrice 
-";
+            // string sqlQuery = @"select * from Orders 
+            //                     where custID = @custID
+            //                     order by orderPrice ";
+            string sqlQuery = @"select * from Orders";
 
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
