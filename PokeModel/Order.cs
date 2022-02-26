@@ -20,7 +20,7 @@ namespace PokeModel
                 }
             }
         }
-        public string? _custName;
+        // public string? _custName;
 
         private int _custID;
         public int CustID
@@ -31,56 +31,56 @@ namespace PokeModel
         }
 
 
-        private string? _storeName;
-        public string StoreName
-        {
+        // private string? _storeName;
+        // public string StoreName
+        // {
 
-            get { return _storeName; }
+        //     get { return _storeName; }
 
-            set
-            {
-                if (value != "")
-                {
-                    _storeName = value;
+        //     set
+        //     {
+        //         if (value != "")
+        //         {
+        //             _storeName = value;
 
-                }
-                else
-                {
-                    Console.WriteLine("must not be empty");
-                }
-            }
-        }
-        public string _listOfProducts;
-        private List<LineItems> _lineItems;
-        public List<LineItems> LineItems
-        {
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("must not be empty");
+        //         }
+        //     }
+        // }
+        // public string _listOfProducts;
+        // private List<LineItems> _lineItems;
+        // public List<LineItems> LineItems
+        // {
 
-            get { return _lineItems; }
+        //     get { return _lineItems; }
 
-            set
-            {
-                _lineItems = value;
-            }
-        }
+        //     set
+        //     {
+        //         _lineItems = value;
+        //     }
+        // }
 
-        private string _storeFrontLocation;
-        public string StoreLocation
-        {
-            get { return _storeFrontLocation; }
-            set
-            {
-                if (_storeFrontLocation != "")
-                {
+        // private string _storeFrontLocation;
+        // public string StoreLocation
+        // {
+        //     get { return _storeFrontLocation; }
+        //     set
+        //     {
+        //         if (_storeFrontLocation != "")
+        //         {
 
-                    _storeFrontLocation = value;
-                }
-                else
-                {
-                    Console.WriteLine("Must not be empty");
-                }
-            }
+        //             _storeFrontLocation = value;
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine("Must not be empty");
+        //         }
+        //     }
 
-        }
+        // }
 
         private int _storeID;
         public int StoreID
