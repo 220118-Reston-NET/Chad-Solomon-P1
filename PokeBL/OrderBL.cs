@@ -21,31 +21,31 @@ namespace PokeBL
 
         }
 
-        public List<Order> SearchOrder(int custID)
+        public async Task<List<Order>> SearchOrder(int custID)
         {
 
-            List<Order> listOfOrder = _orderRepo.GetAllOrder(custID);
+            List<Order> listOfOrder = await GetAllOrder();
 
             return listOfOrder.FindAll(o => o.CustID.Equals(custID));
             // .Where(order => order.CustID == custID)
             // .ToList();
         }
 
-        public List<Order> SearchOrderFilter(int p_custID, string p_filter)
+        public async Task<List<Order>> SearchOrderFilter(int p_custID, string p_filter)
         {
             //OrderBL order = new OrderBL();
-            List<Order> listOfOrder = SearchOrder(p_custID);
+            List<Order> listOfOrder = await SearchOrder(p_custID);
 
             return listOfOrder.FindAll(o => o.TotalPrice.Equals(p_filter));
         }
 
-        // public List<Order> GetAllOrder(int custID)
-        // {
+        public async Task<List<Order>> GetAllOrder()
+        {
 
-        //     List<Order> listOrders = new List<Order>();
 
-        //     return listOrders;
-        // }
+
+            return await _orderRepo.GetAllOrder();
+        }
 
     }
 }
