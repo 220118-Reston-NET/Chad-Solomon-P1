@@ -86,7 +86,9 @@ namespace PokeDL
             // string sqlQuery = @"select * from Orders 
             //                     where custID = @custID
             //                     order by orderPrice ";
-            string sqlQuery = @"select * from Orders";
+            string sqlQuery = @"select orderID, orderLocation, orderPrice, custID, OrderTime from Orders
+                                where custID = @custID
+                                order by orderPrice";
 
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
