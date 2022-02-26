@@ -90,12 +90,28 @@ namespace FurrBApi.Controllers
         }
 
         [HttpGet("CustomerOrderHistory")]
-        public IActionResult SearchOrderFilter([FromQuery] int p_custID, string p_filter)
+        public async Task<IActionResult> SearchOrder([FromQuery] int custID)
         {
             try
             {
 
-                return Ok(_orderBL.SearchOrderFilter(p_custID, p_filter));
+                return Ok(await _orderBL.SearchOrder(custID));
+            }
+            catch (System.Exception)
+            {
+
+                //will return an appropriate status code:
+                return NotFound();
+            }
+        }
+
+        [HttpGet("CustomerOrderHistoryFilter")]
+        public async Task<IActionResult> SearchOrderFilter([FromQuery] int p_custID, string p_filter)
+        {
+            try
+            {
+
+                return Ok(await _orderBL.SearchOrderFilter(p_custID, p_filter));
             }
             catch (System.Exception)
             {

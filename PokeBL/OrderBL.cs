@@ -26,14 +26,14 @@ namespace PokeBL
 
             List<Order> listOfOrder = _orderRepo.GetAllOrder(custID);
 
-            return listOfOrder
-                .Where(order => order.CustID == custID)
-                .ToList();
+            return listOfOrder.FindAll(o => o.CustID.Equals(custID));
+            // .Where(order => order.CustID == custID)
+            // .ToList();
         }
 
         public List<Order> SearchOrderFilter(int p_custID, string p_filter)
         {
-
+            //OrderBL order = new OrderBL();
             List<Order> listOfOrder = SearchOrder(p_custID);
 
             return listOfOrder.FindAll(o => o.TotalPrice.Equals(p_filter));
