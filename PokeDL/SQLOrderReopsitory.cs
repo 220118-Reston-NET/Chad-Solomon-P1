@@ -92,7 +92,7 @@ namespace PokeDL
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
 
-                con.Open();
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 //command.Parameters.AddWithValue("@custID", custID);
@@ -101,7 +101,7 @@ namespace PokeDL
                 // command.Parameters.AddWithValue("@custID", custID);
                 // command.Parameters.AddWithValue("@custID", custID);
 
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
 
                 while (reader.Read())
                 {
