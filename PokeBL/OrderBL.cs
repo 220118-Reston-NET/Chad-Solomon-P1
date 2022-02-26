@@ -31,6 +31,14 @@ namespace PokeBL
                 .ToList();
         }
 
+        public List<Order> SearchOrderFilter(int p_custID, string p_filter)
+        {
+
+            List<Order> listOfOrder = SearchOrder(p_custID);
+
+            return listOfOrder.FindAll(o => o.TotalPrice.Equals(p_filter));
+        }
+
         // public List<Order> GetAllOrder(int custID)
         // {
 
