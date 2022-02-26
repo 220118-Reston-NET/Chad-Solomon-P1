@@ -83,8 +83,10 @@ namespace PokeDL
         {
             List<Order> listOfOrders = new List<Order>();
 
-            string sqlQuery = @"select * from Orders
-                                    where custID = @custID";
+            string sqlQuery = @"select * from Orders 
+                                where custID = @custID
+                                order by orderPrice 
+";
 
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
@@ -94,6 +96,10 @@ namespace PokeDL
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@custID", custID);
+                // command.Parameters.AddWithValue("@custID", custID);
+                // command.Parameters.AddWithValue("@custID", custID);
+                // command.Parameters.AddWithValue("@custID", custID);
+                // command.Parameters.AddWithValue("@custID", custID);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -104,9 +110,10 @@ namespace PokeDL
                     {
 
                         OrderID = reader.GetInt32(0),
-                        _storeID = reader.GetInt32(1),
+                        StoreID = reader.GetInt32(1),
                         TotalPrice = reader.GetInt32(2),
-                        _custID = reader.GetInt32(3)
+                        CustID = reader.GetInt32(3),
+                        TimeStamp = reader.GetDateTime(4)
 
 
                     });
@@ -170,9 +177,9 @@ namespace PokeDL
                     {
 
                         OrderID = reader.GetInt32(0),
-                        _storeID = reader.GetInt32(1),
+                        StoreID = reader.GetInt32(1),
                         TotalPrice = reader.GetInt32(2),
-                        _custID = reader.GetInt32(3)
+                        CustID = reader.GetInt32(3)
                     });
                 }
             }
