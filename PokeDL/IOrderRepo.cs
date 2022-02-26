@@ -9,6 +9,8 @@ namespace PokeDL
 
         public List<Order> GetAllOrder(int custID);
 
+        // List<Order> SearchOrder(int custID);
+
         // public List<Order> GetAllOrder();
     }
 }
