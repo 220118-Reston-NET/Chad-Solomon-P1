@@ -9,6 +9,8 @@ namespace PokeBL
         //List<Order> GetAllOrder(int custID);
 
         List<Order> SearchOrder(int custID);
+
+        List<Order> SearchOrderFilter(int p_custID, string p_filter);
     }
 
 
