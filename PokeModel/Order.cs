@@ -21,7 +21,15 @@ namespace PokeModel
             }
         }
         public string? _custName;
-        public int _custID;
+
+        private int _custID;
+        public int CustID
+
+        {
+            get { return _custID; }
+            set { _custID = value; }
+        }
+
 
         private string? _storeName;
         public string StoreName
@@ -74,7 +82,25 @@ namespace PokeModel
 
         }
 
-        public int _storeID;
+        private int _storeID;
+        public int StoreID
+        {
+            get { return _storeID; }
+            set
+            {
+                if (value > 0)
+                {
+                    _storeID = value;
+                }
+                else
+                {
+                    Console.WriteLine("Order ID must be greater than 0");
+                }
+
+
+            }
+        }
+
         private int _totalPrice;
         public int TotalPrice
         {
