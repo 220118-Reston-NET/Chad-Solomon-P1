@@ -7,13 +7,15 @@ namespace PokeDL
     public class SQLOrderRepository : IOrderRepo
     {
         private readonly string _connectionStrings;
+
         public SQLOrderRepository(string p_connectionStrings)
         {
 
             _connectionStrings = p_connectionStrings;
+
         }
 
-        public void AddOrder(int _orderLocation, int _price, int _custID, List<LineItems> _cart)
+        public void AddOrder(int _orderLocation, int _custID, List<LineItems> _cart)
         {
 
             //First we need setup a sqlQuery
@@ -47,7 +49,7 @@ namespace PokeDL
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@storeID", _orderLocation);
                 command.Parameters.AddWithValue("@custID", _custID);
-                command.Parameters.AddWithValue("@TotalPrice", _price);
+                command.Parameters.AddWithValue("@TotalPrice", TotalPrice(_cart));
                 command.Parameters.AddWithValue("@TimeStamp", _orderNew.TimeStamp);
 
 
@@ -113,7 +115,8 @@ namespace PokeDL
                         StoreID = reader.GetInt32(1),
                         TotalPrice = reader.GetInt32(2),
                         CustID = reader.GetInt32(3),
-                        TimeStamp = reader.GetDateTime(4)
+                        TimeStamp = reader.GetDateTime(4),
+                        ShoppingCart = GetShoppingCartByOrderID(reader.GetInt32(0))
 
 
                     });
@@ -179,7 +182,8 @@ namespace PokeDL
                         OrderID = reader.GetInt32(0),
                         StoreID = reader.GetInt32(1),
                         TotalPrice = reader.GetInt32(2),
-                        CustID = reader.GetInt32(3)
+                        CustID = reader.GetInt32(3),
+                        ShoppingCart = GetShoppingCartByOrderID(reader.GetInt32(0))
                     });
                 }
             }
@@ -210,7 +214,58 @@ namespace PokeDL
 
 
             }
+
+
         }
 
+        public int TotalPrice(List<LineItems> _cart)
+        {
+            SQLProductRepository prodRepo = new SQLProductRepository(_connectionStrings);
+            int _totalPrice = 0;
+            int _price = 0;
+            foreach (var item in _cart)
+            {
+                _price = prodRepo.GetAllProduct().Find(p => p.ID == item.Product).Price;
+                _totalPrice += item.Quantity * _price;
+            }
+            return _totalPrice;
+        }
+
+        public List<LineItems> GetShoppingCartByOrderID(int p_orderID)
+        {
+            List<LineItems> _shoppingcart = new List<LineItems>();
+
+            string sqlQuery = @"SELECT prodID, Quantity
+                                 From LineItems
+                                 where orderID = @orderID";
+
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
+            {
+                con.Open();
+
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                command.Parameters.AddWithValue("@orderID", p_orderID);
+
+                //SqlDataReader is like the middle man between SQL and C#
+                //Since SQL only understands table and c# only understands objects and classes
+
+                SqlDataReader reader = command.ExecuteReader();
+                //setting the condition of the while loop to say 
+                //as long as there is data to still be read keep reading it
+                while (reader.Read())
+                {
+
+                    _shoppingcart.Add(new LineItems()
+                    {
+
+                        Product = reader.GetInt32(0),
+                        Quantity = reader.GetInt32(1)
+
+                    });
+                }
+            }
+
+            return _shoppingcart;
+        }
     }
 }
