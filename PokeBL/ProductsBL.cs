@@ -20,6 +20,11 @@ namespace PokeBL
 
         }
 
+        public Product GetProductByID(int p_prodID)
+        {
+            return _orepo.GetAllProduct().Find(p => p._prodID.Equals(p_prodID));
+        }
+
         public List<Product> GetAllProductByStoreID(int storeID)
         {
             return _orepo.GetAllProductsByStoreID(storeID);
