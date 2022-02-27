@@ -7,17 +7,18 @@ namespace PokeBL
     {
 
         //Dependency Injection
-        private IOrderRepo _orderRepo;
+        private readonly IOrderRepo _orderRepo;
         public OrderBL(IOrderRepo c_orderRepo)
         {
 
             _orderRepo = c_orderRepo;
+
         }
 
         //public void AddOrder(Order _custID, Order _orderLocation, LineItem _cart)
-        public void AddOrder(int _orderLocation, int _price, int _custID, List<LineItems> _cart)
+        public void AddOrder(int _orderLocation, int _custID, List<LineItems> _cart)
         {
-            _orderRepo.AddOrder(_orderLocation, _price, _custID, _cart);
+            _orderRepo.AddOrder(_orderLocation, _custID, _cart);
 
         }
 
@@ -36,7 +37,16 @@ namespace PokeBL
             //OrderBL order = new OrderBL();
             List<Order> listOfOrder = await SearchOrder(p_custID);
 
-            return listOfOrder.FindAll(o => o.TotalPrice.Equals(p_filter));
+            if (p_filter.Equals("TotalPrice"))
+            {
+                return listOfOrder.OrderBy(p => p.TotalPrice).ToList();
+            }
+            else if (p_filter.Equals("TimeStamp"))
+            {
+                return listOfOrder.OrderBy(p => p.TimeStamp).ToList();
+            }
+            return listOfOrder;
+
         }
 
         public async Task<List<Order>> GetAllOrder()
@@ -46,6 +56,7 @@ namespace PokeBL
 
             return await _orderRepo.GetAllOrder();
         }
+
 
     }
 }
