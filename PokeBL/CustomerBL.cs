@@ -24,20 +24,20 @@ namespace PokeBL
 
         //=========================
 
-        public Customer AddCustomer(Customer c_customer)
+        public async Task<Customer> AddCustomer(Customer c_customer)
         {
-            return _repo.AddCustomer(c_customer);
+            return await _repo.AddCustomer(c_customer);
 
         }
 
-        public List<Customer> GetAllCustomer()
+        public async Task<List<Customer>> GetAllCustomer()
         {
-            return _repo.GetAllCustomers();
+            return await _repo.GetAllCustomers();
         }
 
-        public List<Customer> SearchCustomer(int c_id)
+        public async Task<List<Customer>> SearchCustomer(int c_id)
         {
-            List<Customer> listOfCustomers = _repo.GetAllCustomers();
+            List<Customer> listOfCustomers = await _repo.GetAllCustomers();
 
             //LINQ Library
             //.Where() filters a sequence of values based on a predicate
@@ -50,16 +50,16 @@ namespace PokeBL
         }
 
 
-        public Customer UpdateCustomer(Customer p_cust)
+        public async Task<Customer> UpdateCustomer(Customer p_cust)
         {
-            return _repo.UpdateCustomer(p_cust);
+            return await _repo.UpdateCustomer(p_cust);
 
         }
 
-        public List<Customer> VerifyCustomer(string p_email, string p_password)
+        public async Task<List<Customer>> VerifyCustomer(string p_email, string p_password)
         {
 
-            List<Customer> listOfCust = _repo.GetAllCustomers();
+            List<Customer> listOfCust = await _repo.GetAllCustomers();
 
 
             return listOfCust
