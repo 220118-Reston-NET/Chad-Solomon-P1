@@ -1,5 +1,6 @@
 using Xunit;
 using PokeModel;
+using System.Threading.Tasks;
 
 namespace UnitTest
 {
@@ -7,7 +8,7 @@ namespace UnitTest
     public class OrderLocationTesting
     {
         [Fact]
-        public void SetValidLocation()
+        public async Task SetValidLocation()
         {
             //Arrange
             Order order = new Order();
