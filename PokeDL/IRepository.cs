@@ -8,12 +8,12 @@ namespace PokeDL
     */
     public interface IRepository
     {
-        Customer AddCustomer(Customer c_name);
+        Task<Customer> AddCustomer(Customer c_name);
 
 
-        List<Customer> GetAllCustomers();
+        Task<List<Customer>> GetAllCustomers();
 
-        Customer UpdateCustomer(Customer p_cust);
+        Task<Customer> UpdateCustomer(Customer p_cust);
 
 
 
