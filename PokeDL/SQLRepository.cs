@@ -10,13 +10,13 @@ namespace PokeDL
 
             _connectionStrings = p_connectionStrings;
         }
-        public Customer AddCustomer(Customer c_customer)
+        public async Task<Customer> AddCustomer(Customer c_customer)
         {
             string sqlQuery = @"insert into Customer values (@custName, @custAddress, @custEmail, @custPassword)";
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
                 command.Parameters.AddWithValue("@custName", c_customer.Name);
@@ -24,7 +24,7 @@ namespace PokeDL
                 command.Parameters.AddWithValue("@custEmail", c_customer.Email);
                 command.Parameters.AddWithValue("@custPassword", c_customer.Password);
 
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
 
                 return c_customer;
             }
@@ -36,7 +36,7 @@ namespace PokeDL
 
 
 
-        public List<Customer> GetAllCustomers()
+        public async Task<List<Customer>> GetAllCustomers()
         {
             List<Customer> listOfCustomers = new List<Customer>();
 
@@ -44,11 +44,11 @@ namespace PokeDL
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
-                con.Open();
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
 
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
 
                 while (reader.Read())
                 {
@@ -68,7 +68,7 @@ namespace PokeDL
         }
 
 
-        public Customer UpdateCustomer(Customer p_cust)
+        public async Task<Customer> UpdateCustomer(Customer p_cust)
         {
 
             string sqlQuery = @"update Customer
@@ -78,7 +78,7 @@ namespace PokeDL
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
 
-                con.Open();
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
 
@@ -88,7 +88,7 @@ namespace PokeDL
                 command.Parameters.AddWithValue("@custPassword", p_cust.Password);
                 command.Parameters.AddWithValue("@id", p_cust.CustID);
 
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
 
             return p_cust;
