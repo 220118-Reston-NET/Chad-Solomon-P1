@@ -31,56 +31,47 @@ namespace PokeModel
         }
 
 
-        // private string? _storeName;
-        // public string StoreName
-        // {
+        private string? _storeName;
+        public string StoreName
+        {
 
-        //     get { return _storeName; }
+            get { return _storeName; }
 
-        //     set
-        //     {
-        //         if (value != "")
-        //         {
-        //             _storeName = value;
+            set
+            {
+                if (value != "")
+                {
+                    _storeName = value;
 
-        //         }
-        //         else
-        //         {
-        //             Console.WriteLine("must not be empty");
-        //         }
-        //     }
-        // }
-        // public string _listOfProducts;
-        // private List<LineItems> _lineItems;
-        // public List<LineItems> LineItems
-        // {
+                }
+                else
+                {
+                    Console.WriteLine("must not be empty");
+                }
+            }
+        }
+        public string _listOfProducts;
 
-        //     get { return _lineItems; }
+        public List<LineItems> ShoppingCart { get; set; }
 
-        //     set
-        //     {
-        //         _lineItems = value;
-        //     }
-        // }
+        private string _storeFrontLocation;
+        public string StoreLocation
+        {
+            get { return _storeFrontLocation; }
+            set
+            {
+                if (_storeFrontLocation != "")
+                {
 
-        // private string _storeFrontLocation;
-        // public string StoreLocation
-        // {
-        //     get { return _storeFrontLocation; }
-        //     set
-        //     {
-        //         if (_storeFrontLocation != "")
-        //         {
+                    _storeFrontLocation = value;
+                }
+                else
+                {
+                    Console.WriteLine("Must not be empty");
+                }
+            }
 
-        //             _storeFrontLocation = value;
-        //         }
-        //         else
-        //         {
-        //             Console.WriteLine("Must not be empty");
-        //         }
-        //     }
-
-        // }
+        }
 
         private int _storeID;
         public int StoreID
@@ -139,10 +130,10 @@ namespace PokeModel
         // }
 
 
-        public override string ToString()
-        {
-            return $"Order ID: {_orderID}\nStore ID: {_storeID}\nOrder Price: {TotalPrice}\nTime Stamp: {TimeStamp}\n";
-        }
+        // public override string ToString()
+        // {
+        //     return $"Order ID: {_orderID}\nStore ID: {_storeID}\nOrder Price: {TotalPrice}\nTime Stamp: {TimeStamp}\n";
+        // }
 
 
 
