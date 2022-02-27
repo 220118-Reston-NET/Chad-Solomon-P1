@@ -13,10 +13,13 @@ builder.Services.AddScoped<IRepository>(repo => new SQLRepository(builder.Config
 builder.Services.AddScoped<IStoreFrontRepo>(repo => new SQLStoreFrontRepo(builder.Configuration.GetConnectionString("Reference2DB")));
 builder.Services.AddScoped<IInventoryRepo>(repo => new SQLInventory(builder.Configuration.GetConnectionString("Reference2DB")));
 builder.Services.AddScoped<IOrderRepo>(repo => new SQLOrderRepository(builder.Configuration.GetConnectionString("Reference2DB")));
+builder.Services.AddScoped<IProductRepo>(repo => new SQLProductRepository(builder.Configuration.GetConnectionString("Reference2DB")));
+
 builder.Services.AddScoped<IPokemonBL, CustomerBL>();
 builder.Services.AddScoped<IStoreFrontBL, StoreFrontBL>();
 builder.Services.AddScoped<IInventoryBL, InventoryBL>();
 builder.Services.AddScoped<IOrderBL, OrderBL>();
+builder.Services.AddScoped<IProductBL, ProductBL>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
