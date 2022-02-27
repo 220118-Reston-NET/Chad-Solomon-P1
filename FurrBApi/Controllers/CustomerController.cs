@@ -22,11 +22,15 @@ namespace FurrBApi.Controllers
 
         private IPokemonBL _custBL;
         private IOrderBL _orderBL;
-        public CustomerController(IPokemonBL p_custBL, IOrderBL p_orderBL)
+        private readonly IStoreFrontBL _storeBL;
+        private readonly IProductBL _prodBL;
+        public CustomerController(IPokemonBL p_custBL, IOrderBL p_orderBL, IStoreFrontBL storeBL, IProductBL prodBL)
         {
 
             _custBL = p_custBL;
             _orderBL = p_orderBL;
+            _storeBL = storeBL;
+            _prodBL = prodBL;
         }
 
         //
@@ -97,11 +101,11 @@ namespace FurrBApi.Controllers
 
                 return Ok(await _orderBL.SearchOrder(custID));
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
 
                 //will return an appropriate status code:
-                return NotFound();
+                return NotFound(new { Result = e.Message });
             }
         }
 
@@ -119,6 +123,48 @@ namespace FurrBApi.Controllers
                 //will return an appropriate status code:
                 return NotFound();
             }
+        }
+
+        [HttpGet("OrderDetails")]
+        public async Task<IActionResult> GetOrderDetailByOrderID([FromQuery] int p_orderID)
+        {
+
+            List<Order> _listOfOrder = await _orderBL.GetAllOrder();
+            Order _order = _listOfOrder.Find(p => p.OrderID.Equals(p_orderID));
+
+            if (_order != null)
+            {
+                OrderDetails _orderDetails = new OrderDetails();
+
+                List<Customer> _listOfCust = await _custBL.GetAllCustomer();
+
+                List<StoreFront> _listOfStore = _storeBL.GetAllStoreFronts();
+
+
+
+                _orderDetails.OrderID = p_orderID;
+                _orderDetails.CustName = _listOfCust.Find(p => p.CustID.Equals(_order.CustID)).Name;
+                _orderDetails.StoreName = _listOfStore.Find(p => p.StoreID.Equals(_order.StoreID)).StoreName;
+                foreach (var item in _order.ShoppingCart)
+                {
+                    _orderDetails.ShoppingCart.Add(new ProductDetails()
+                    {
+
+                        ProductName = _prodBL.GetProductByID(item.Product).Name,
+                        ProductPrice = _prodBL.GetProductByID(item.Product).Price,
+                        Quantity = item.Quantity
+
+                    });
+                }
+                _orderDetails.TotalPrice = _order.TotalPrice;
+                _orderDetails.OrderTime = _order.TimeStamp;
+                return Ok(_orderDetails);
+
+
+            }
+
+            return NotFound(new { Result = "Order not found" });
+
         }
 
         /*
@@ -145,21 +191,22 @@ namespace FurrBApi.Controllers
         }
 
 
-        // [HttpPost]
+        [HttpPost("PlaceOrder")]
 
-        // public IActionResult Post([FromQuery] int _orderLocation, int _price, int _custID, List<LineItems> _cart)
-        // {
+        public IActionResult Post([FromQuery] int _orderLocation, int _custID, List<LineItems> _cart)
+        {
 
-        //     try
-        //     {
-        //         return Ok(_orderBL.AddOrder(_orderLocation, _price, _custID, _cart));
-        //     }
-        //     catch (System.Exception)
-        //     {
+            try
+            {
+                _orderBL.AddOrder(_orderLocation, _custID, _cart);
+                return Ok(new { Result = "Place order Successful" });
+            }
+            catch (System.Exception)
+            {
 
-        //         return Conflict();
-        //     }
-        // }
+                return Conflict();
+            }
+        }
 
 
 
