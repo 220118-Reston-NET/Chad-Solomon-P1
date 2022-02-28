@@ -213,13 +213,13 @@ namespace FurrBApi.Controllers
         // PUT: api/Customer/5
         [HttpPut("UpdateCustomer")] //PUT creates a new resource or replaces a representation of the target resource with 
                                     //the target payload.
-        public IActionResult Put([FromQuery] Customer p_cust)
+        public async Task<IActionResult> Put([FromQuery] Customer p_cust)
         {
 
 
             // try
             // {
-            return Ok(_custBL.UpdateCustomer(p_cust));
+            return Ok(await _custBL.UpdateCustomer(p_cust));
             // }
             // catch (System.Exception exc)
             // {
