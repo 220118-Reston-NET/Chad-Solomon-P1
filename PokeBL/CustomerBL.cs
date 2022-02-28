@@ -15,6 +15,10 @@ namespace PokeBL
         //the compiler helping us
         //===========================
 
+        /// <summary>
+        /// 
+        /// </summary>
+
 
         private IRepository _repo;
         public CustomerBL(IRepository c_repo)
@@ -35,15 +39,15 @@ namespace PokeBL
             return await _repo.GetAllCustomers();
         }
 
-        public async Task<List<Customer>> SearchCustomer(int c_id)
+        public async Task<Customer> SearchCustomer(int c_id)
         {
             List<Customer> listOfCustomers = await _repo.GetAllCustomers();
 
             //LINQ Library
             //.Where() filters a sequence of values based on a predicate
             //.ToList used with .Where or other methods from the IEnumerable class to place the out from the IEnumerable into a list.
-            return listOfCustomers
-                    .Where(p => p.CustID.Equals(c_id)).ToList();
+            return listOfCustomers.Find(o => o.CustID.Equals(c_id));
+            // .Where(p => p.CustID.Equals(c_id)).ToList();
 
 
 
