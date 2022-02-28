@@ -62,12 +62,12 @@ namespace FurrBApi.Controllers
 
         // GET: api/Customer/5
         [HttpGet("GetCustomerByID{id}")]
-        public IActionResult SearchCustomer(int id)
+        public async Task<IActionResult> SearchCustomer(int id)
         {
             try
             {
 
-                return Ok(_custBL.SearchCustomer(id));
+                return Ok(await _custBL.SearchCustomer(id));
             }
             catch (System.Exception)
             {
@@ -78,12 +78,12 @@ namespace FurrBApi.Controllers
         }
 
         [HttpGet("VerifyCustomer")]
-        public IActionResult VerifyCustomer([FromQuery] string p_email, string p_password)
+        public async Task<IActionResult> VerifyCustomer([FromQuery] string p_email, string p_password)
         {
             try
             {
 
-                return Ok(_custBL.VerifyCustomer(p_email, p_password));
+                return Ok(await _custBL.VerifyCustomer(p_email, p_password));
             }
             catch (System.Exception)
             {
@@ -176,12 +176,12 @@ namespace FurrBApi.Controllers
         // POST: api/Customer
         [HttpPost] //Post sends data to the server. So here we are sending customer information to the server.
                    //we are obtaining the customer info via a form body.
-        public IActionResult Post([FromQuery] Customer p_cust)
+        public async Task<IActionResult> Post([FromQuery] Customer p_cust)
         {
 
             try
             {
-                return Ok(_custBL.AddCustomer(p_cust));
+                return Ok(await _custBL.AddCustomer(p_cust));
             }
             catch (System.Exception)
             {
