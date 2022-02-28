@@ -43,8 +43,9 @@ namespace PokeBL
             //.Where() filters a sequence of values based on a predicate
             //.ToList used with .Where or other methods from the IEnumerable class to place the out from the IEnumerable into a list.
             return listOfCustomers
-                    .Where(cust => cust.CustID == c_id)
-                    .ToList();
+                    .Where(p => p.CustID.Equals(c_id)).ToList();
+
+
 
 
         }
