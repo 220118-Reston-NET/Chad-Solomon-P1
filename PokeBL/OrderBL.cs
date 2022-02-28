@@ -57,13 +57,13 @@ namespace PokeBL
             return await _orderRepo.GetAllOrder();
         }
 
-        public async Task<List<Order>> GetStoreOrder()
-        {
+        // public async Task<List<Order>> GetStoreOrder()
+        // {
 
 
 
-            return await _orderRepo.GetStoreOrder();
-        }
+        //     return await _orderRepo.GetStoreOrder();
+        // }
 
         public async Task<List<Order>> SearchStoreOrder(int _storeID)
         {
