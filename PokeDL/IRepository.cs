@@ -15,6 +15,8 @@ namespace PokeDL
 
         Task<Customer> UpdateCustomer(Customer p_cust);
 
+        // Task<List<Customer>> SearchCustomer(int c_id);
+
 
 
 
