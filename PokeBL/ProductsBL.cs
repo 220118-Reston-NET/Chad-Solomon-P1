@@ -44,6 +44,14 @@ namespace PokeBL
 
         }
 
+        public List<Product> GetAllProducts()
+        {
+            List<Product> listOfProducts = new List<Product>();
+
+            return _orepo.GetAllProduct();
+
+        }
+
 
     }
 }
