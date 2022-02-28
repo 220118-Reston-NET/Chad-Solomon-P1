@@ -6,7 +6,7 @@ namespace PokeBL
     {
         Task<Customer> AddCustomer(Customer c_name);
 
-        Task<List<Customer>> SearchCustomer(int c_id);
+        Task<Customer> SearchCustomer(int c_id);
 
         Task<List<Customer>> GetAllCustomer();
         Task<Customer> UpdateCustomer(Customer p_cust);
