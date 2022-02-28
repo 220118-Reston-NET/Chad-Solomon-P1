@@ -10,5 +10,6 @@ namespace PokeBL
         List<Product> GetAllProductByStoreID(int storeID);
 
         Product GetProductByID(int p_prodID);
+        List<Product> GetAllProducts();
     }
 }
