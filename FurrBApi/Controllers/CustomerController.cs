@@ -39,11 +39,11 @@ namespace FurrBApi.Controllers
         [HttpGet("GetAllCustomers")] //the ("GetAllCustomers") is changing the endpoint of this method/action
 
         //The IActionResult needs to be there to return a response essentially sying whether the action/method was succesful.
-        public IActionResult GetAllCustomer()
+        public async Task<IActionResult> GetAllCustomer()
         {
             try
             {
-                return Ok(_custBL.GetAllCustomer());
+                return Ok(await _custBL.GetAllCustomer());
             }
             catch (SqlException)
             {
