@@ -61,8 +61,8 @@ namespace FurrBApi.Controllers
         */
 
         // GET: api/Customer/5
-        [HttpGet("GetCustomerByID{id}")]
-        public async Task<IActionResult> SearchCustomer(int id)
+        [HttpGet("GetCustomerByID")]
+        public async Task<IActionResult> SearchCustomer([FromQuery] int id)
         {
             try
             {
