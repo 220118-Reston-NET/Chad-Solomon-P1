@@ -7,13 +7,15 @@ namespace PokeDL
     {
 
 
-        // public List<StoreFront> SearchStoreById(int storeID)
-        // {
+        private readonly string _connectionStrings;
 
-        //     List<StoreFront> listOfStoreFront = GetStore
-        // }
+        public SQLStoreHistory(string p_connectionStrings)
+        {
 
-        public List<StoreOrder> GetStoreOrder(int storeID)
+            _connectionStrings = p_connectionStrings;
+        }
+
+        public List<StoreOrder> GetStoreOrder()
         {
             List<StoreOrder> listStoreOrder = new List<StoreOrder>();
 
@@ -22,12 +24,12 @@ namespace PokeDL
             /**/
 
 
-            using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 con.Open();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@storeID", storeID);
+                //command.Parameters.AddWithValue("@storeID", storeID);
 
                 SqlDataReader reader = command.ExecuteReader();
 

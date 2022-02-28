@@ -63,5 +63,10 @@ namespace PokeBL
 
             return _srepo.GetAllStoreFronts();
         }
+
+        // public List<Order> GetStoreOrderHistory(int p_storeID){
+
+        //     List<Order> _listStoreOrders = Get
+        // }
     }
 }

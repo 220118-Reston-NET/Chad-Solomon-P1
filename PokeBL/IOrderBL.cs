@@ -10,6 +10,10 @@ namespace PokeBL
 
         Task<List<Order>> SearchOrder(int custID);
 
+        Task<List<Order>> GetStoreOrder();
+        Task<List<Order>> SearchStoreOrder(int _storeID);
+        Task<List<Order>> SearchStoreOrderHistFilter(int p_storeID, string p_filter);
+
         Task<List<Order>> SearchOrderFilter(int p_custID, string p_filter);
 
 

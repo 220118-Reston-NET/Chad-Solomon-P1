@@ -40,10 +40,10 @@ namespace CustomerTest
             // In thes way, we guaranteed that our dependency will always work so if something goes wrong it is the business layer's fault
             mockRepo.Setup(repo => repo.GetAllCustomers()).ReturnsAsync(expectedListOfCustomer);
 
-            IPokemonBL custBL = new CustomerBL(mockRepo.Object);
+            IPokemonBL _custBL = new CustomerBL(mockRepo.Object);
 
             //Act
-            List<Customer> actualListOfCustomer = await custBL.GetAllCustomer();
+            List<Customer> actualListOfCustomer = await _custBL.GetAllCustomer();
 
 
             //Assert
@@ -56,71 +56,71 @@ namespace CustomerTest
         }
 
 
-        // [Fact]
-        // public async Task Should_Search_Customer_By_ID()
-        // {
-        //     List<Customer> _listOfCustomers = new List<Customer>();
+        [Fact]
+        public async Task Should_Search_Customer_By_ID()
+        {
+            List<Customer> _listOfCustomers = new List<Customer>();
 
 
-        //     //Arrange
-        //     int customerID = 1;
-        //     string custName = "Rhea";
-        //     string custAddress = "123 Fetch Alot Lane";
-        //     string custEmail = "rhea@dogmail.com";
-        //     string custpassword = "FetchOne";
+            //Arrange
+            // int customerID = 1;
+            // string custName = "Rhea";
+            // string custAddress = "123 Fetch Alot Lane";
+            // string custEmail = "rhea@dogmail.com";
+            // string custpassword = "FetchOne";
 
-        //     // int customer2ID = 2;
-        //     // string cust2Name = "Ldog";
-        //     // string cust2Address = "123 Nap Alot Lane";
-        //     // string cust2Email = "ldog@dogmail.com";
-        //     // string cust2password = "NapOne";
-
-
-
-        //     Customer _cust = new Customer()
-        //     {
-
-        //         CustID = customerID,
-        //         Name = custName,
-        //         Address = custAddress,
-        //         Email = custEmail,
-        //         Password = custpassword
-        //     };
-
-        //     // Customer _cust2 = new Customer()
-        //     // {
-
-        //     //     CustID = customerID,
-        //     //     Name = custName,
-        //     //     Address = custAddress,
-        //     //     Email = custEmail,
-        //     //     Password = custpassword
-        //     // };
-        //     _listOfCustomers.Add(_cust);
+            // int customer2ID = 2;
+            // string cust2Name = "Ldog";
+            // string cust2Address = "123 Nap Alot Lane";
+            // string cust2Email = "ldog@dogmail.com";
+            // string cust2password = "NapOne";
 
 
 
-        //     Mock<IRepository> mockRepo = new Mock<IRepository>();
+            Customer _cust = new Customer()
+            {
 
-        //     mockRepo.Setup(p => p.GetAllCustomers()).ReturnsAsync(_listOfCustomers);
+                CustID = 1,
+                Name = "Rhea",
+                Address = "123 Fetch Alot Lane",
+                Email = "rhea@dogmail.com",
+                Password = "FetchOne"
+            };
 
-        //     IPokemonBL custBL = new CustomerBL(mockRepo.Object);
+            // Customer _cust2 = new Customer()
+            // {
 
-        //     Customer _expectedCust = _cust;
+            //     CustID = customerID,
+            //     Name = custName,
+            //     Address = custAddress,
+            //     Email = custEmail,
+            //     Password = custpassword
+            // };
+            _listOfCustomers.Add(_cust);
 
-        //     Customer actualCustomer = new Customer();
 
-        //     //Act
-        //     //actualCustomer = await custBL.SearchCustomer(_cust.CustID);
 
-        //     //Assert
-        //     Assert.Same(_cust, actualCustomer);
-        //     Assert.Equal(customerID, actualCustomer.CustID);
-        //     Assert.Equal(custName, actualCustomer.Name);
-        //     Assert.Equal(custAddress, actualCustomer.Address);
-        //     Assert.Equal(custEmail, actualCustomer.Email);
-        //     Assert.Equal(custpassword, actualCustomer.Password);
-        // }
+            Mock<IRepository> mockRepo = new Mock<IRepository>();
+
+            mockRepo.Setup(p => p.GetAllCustomers()).ReturnsAsync(_listOfCustomers);
+
+            IPokemonBL _custBL = new CustomerBL(mockRepo.Object);
+
+            Customer _expectedCust = _cust;
+
+            Customer _actualCustomer = new Customer();
+
+            //Act
+            _actualCustomer = await _custBL.SearchCustomer(_cust.CustID);
+
+            //Assert
+            Assert.Same(_expectedCust, _actualCustomer);
+            Assert.Equal(_expectedCust.CustID, _actualCustomer.CustID);
+            Assert.Equal(_expectedCust.Name, _actualCustomer.Name);
+            Assert.Equal(_expectedCust.Address, _actualCustomer.Address);
+            Assert.Equal(_expectedCust.Email, _actualCustomer.Email);
+            Assert.Equal(_expectedCust.Password, _actualCustomer.Password);
+        }
 
         // public async Task Should_update_Customer()
         // {

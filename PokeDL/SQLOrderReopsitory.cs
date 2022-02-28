@@ -128,67 +128,39 @@ namespace PokeDL
 
         }
 
-
-
-
-        //public int Calculate
-
-        // public List<Order> SearchOrder(int custID)
-        // {
-        //     List<Order> listOfOrder = GetOrder();
-
-        //     string sqlQuery = @"select * from Orders where custID = @custID";
-
-        //     using (SqlConnection con = new SqlConnection("Server=tcp:furrbabies.database.windows.net,1433;Initial Catalog=Furr-Babbies-Pet-Supply;Persist Security Info=False;User ID=FurrBabies;Password=RheaandLdog1$;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
-        //     {
-
-        //         con.Open();
-
-        //         SqlCommand command = new SqlCommand(sqlQuery, con);
-        //         command.Parameters.AddWithValue("@custID", custID);
-
-
-        //         command.ExecuteNonQuery();
-        //     }
-
-
-        //     return listOfOrder;
-
-        // }
-
-        public List<Order> GetOrder()
+        public async Task<List<Order>> GetStoreOrder()
         {
-            List<Order> listOfOrder = new List<Order>();
+            List<Order> listStoreOrder = new List<Order>();
 
-            string sqlQuery = @"select * from Orders";
+            string sqlQuery = @"select orderID, orderLocation, orderPrice, custID, OrderTime from Orders";
+            /**/
+
 
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
+                await con.OpenAsync();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
+                //command.Parameters.AddWithValue("@storeID", storeID);
 
-                //SqlDataReader is like the middle man between SQL and C#
-                //Since SQL only understands table and c# only understands objects and classes
+                SqlDataReader reader = await command.ExecuteReaderAsync();
 
-                SqlDataReader reader = command.ExecuteReader();
-                //setting the condition of the while loop to say 
-                //as long as there is data to still be read keep reading it
+
                 while (reader.Read())
                 {
 
-                    listOfOrder.Add(new Order()
+                    listStoreOrder.Add(new Order()
                     {
-
                         OrderID = reader.GetInt32(0),
                         StoreID = reader.GetInt32(1),
                         TotalPrice = reader.GetInt32(2),
                         CustID = reader.GetInt32(3),
-                        ShoppingCart = GetShoppingCartByOrderID(reader.GetInt32(0))
+                        TimeStamp = reader.GetDateTime(4)
+
                     });
                 }
             }
-
-            return listOfOrder;
+            return listStoreOrder;
 
         }
 

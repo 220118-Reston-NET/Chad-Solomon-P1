@@ -5,9 +5,10 @@ namespace PokeDL
     public interface IOrderRepo
     {
 
-        public void AddOrder(int _orderLocation, int _custID, List<LineItems> _cart);
+        void AddOrder(int _orderLocation, int _custID, List<LineItems> _cart);
 
-        public Task<List<Order>> GetAllOrder();
+        Task<List<Order>> GetAllOrder();
+        Task<List<Order>> GetStoreOrder();
 
         // List<Order> SearchOrder(int custID);
 

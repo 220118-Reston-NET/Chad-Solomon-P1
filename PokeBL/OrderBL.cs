@@ -57,6 +57,36 @@ namespace PokeBL
             return await _orderRepo.GetAllOrder();
         }
 
+        public async Task<List<Order>> GetStoreOrder()
+        {
 
+
+
+            return await _orderRepo.GetStoreOrder();
+        }
+
+        public async Task<List<Order>> SearchStoreOrder(int _storeID)
+        {
+            List<Order> _listStoreOrder = await GetAllOrder();
+
+            return _listStoreOrder.FindAll(o => o.StoreID.Equals(_storeID));
+        }
+
+        public async Task<List<Order>> SearchStoreOrderHistFilter(int p_storeID, string p_filter)
+        {
+            List<Order> _listStoreOrder = await SearchStoreOrder(p_storeID);
+
+            if (p_filter.Equals("TotalPrice"))
+            {
+                return _listStoreOrder.OrderBy(p => p.TotalPrice).ToList();
+            }
+            else if (p_filter.Equals("TimeStamp"))
+            {
+                return _listStoreOrder.OrderBy(p => p.TimeStamp).ToList();
+            }
+
+
+            return _listStoreOrder;
+        }
     }
 }
