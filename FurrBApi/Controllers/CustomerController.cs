@@ -33,9 +33,9 @@ namespace FurrBApi.Controllers
             _prodBL = prodBL;
         }
 
-        //
-
-        // GET: api/Customer
+        ///
+        ///
+        /// // GET: api/Customer
         [HttpGet("GetAllCustomers")] //the ("GetAllCustomers") is changing the endpoint of this method/action
 
         //The IActionResult needs to be there to return a response essentially sying whether the action/method was succesful.
