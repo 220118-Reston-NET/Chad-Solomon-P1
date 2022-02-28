@@ -177,6 +177,11 @@
             return $"Name: {Name}\nAddress: {Address}\nEmail: {Email}\nPassword {Password}\n";
         }
 
+        // public static implicit operator Customer(List<Customer> v)
+        // {
+        //     throw new NotImplementedException();
+        // }
+
 
 
         // public override string ToString()
