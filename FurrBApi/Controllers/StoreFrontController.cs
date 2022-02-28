@@ -17,10 +17,13 @@ namespace FurrBApi.Controllers
 
         private IStoreFrontBL _storeBL;
         private IInventoryBL _irepo;
-        public StoreFrontController(IStoreFrontBL p_storeBL, IInventoryBL p_irepo)
+        private IOrderBL _orderBL;
+
+        public StoreFrontController(IStoreFrontBL p_storeBL, IInventoryBL p_irepo, IOrderBL orderBL)
         {
             _storeBL = p_storeBL;
             _irepo = p_irepo;
+            _orderBL = orderBL;
         }
         // GET: api/StoreFront
         [HttpGet("GetStoreInfo")]
@@ -51,10 +54,37 @@ namespace FurrBApi.Controllers
             }
         }
 
-        // POST: api/StoreFront
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("StoreOrderHistory")]
+        public async Task<IActionResult> SearchStoreOrder([FromQuery] int _storeID)
         {
+            try
+            {
+
+                return Ok(await _orderBL.SearchStoreOrder(_storeID));
+            }
+            catch (System.Exception e)
+            {
+
+                //will return an appropriate status code:
+                return NotFound(new { Result = e.Message });
+            }
+        }
+
+        // POST: api/StoreFront
+        [HttpGet("StoreOrderHistoryFilter")]
+        public async Task<IActionResult> SearchStoreOrderHistFilter(int p_storeID, string p_filter)
+        {
+            try
+            {
+
+                return Ok(await _orderBL.SearchStoreOrderHistFilter(p_storeID, p_filter));
+            }
+            catch (System.Exception)
+            {
+
+                //will return an appropriate status code:
+                return NotFound();
+            }
         }
 
         // PUT: api/StoreFront/5
