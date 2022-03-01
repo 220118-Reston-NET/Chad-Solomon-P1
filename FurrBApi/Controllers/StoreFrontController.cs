@@ -41,7 +41,7 @@ namespace FurrBApi.Controllers
 
         // GET: api/StoreFront/5
         [HttpGet("GetInventoryByStoreID")]
-        public IActionResult GetInventoryByStoreID([FromQuery] int id)
+        public IActionResult GetAllInventoryByStoreID([FromQuery] int id)
         {
             try
             {
