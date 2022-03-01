@@ -27,7 +27,9 @@ namespace PokeBL
 
         public List<Inventory> GetAllInventoryByStoreID(int storeID)
         {
-            return GetAllInventory().FindAll(p => p.StoreID == storeID);
+            List<Inventory> _listOfInventory = _irepo.GetAllInventory();
+
+            return _listOfInventory.FindAll(p => p.StoreID == storeID);
         }
 
         // public List<Inventory> GetAllInventory()
