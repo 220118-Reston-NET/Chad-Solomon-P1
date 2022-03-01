@@ -11,6 +11,40 @@ namespace CustomerTest
     public class CustomerBLTest
     {
         [Fact]
+        public async Task Should_Add_Customer()
+        {
+            Customer _expectedCust = new Customer()
+            {
+                Name = "Rhea",
+                Address = "489 Fetch Alot Lane",
+                Email = "rhea@dogmail.com",
+                Password = "FetchOne"
+            };
+
+            Mock<IRepository> mockRepo = new Mock<IRepository>();
+
+
+            mockRepo.Setup(repo => repo.AddCustomer(_expectedCust)).ReturnsAsync(_expectedCust);
+
+            IPokemonBL _custBL = new CustomerBL(mockRepo.Object);
+
+            Customer _actualCustomer = _expectedCust;
+
+            //Act
+            _actualCustomer = await _custBL.AddCustomer(_actualCustomer);
+
+            //Assert
+            Assert.Same(_expectedCust, _actualCustomer);
+            Assert.Equal(_expectedCust.Name, _actualCustomer.Name);
+            Assert.Equal(_expectedCust.Address, _actualCustomer.Address);
+            Assert.Equal(_expectedCust.Email, _actualCustomer.Email);
+            Assert.NotNull(_actualCustomer);
+
+        }
+
+
+
+        [Fact]
         public async Task should_Get_All_Customer()
         {
             //Arrange
@@ -63,19 +97,6 @@ namespace CustomerTest
 
 
             //Arrange
-            // int customerID = 1;
-            // string custName = "Rhea";
-            // string custAddress = "123 Fetch Alot Lane";
-            // string custEmail = "rhea@dogmail.com";
-            // string custpassword = "FetchOne";
-
-            // int customer2ID = 2;
-            // string cust2Name = "Ldog";
-            // string cust2Address = "123 Nap Alot Lane";
-            // string cust2Email = "ldog@dogmail.com";
-            // string cust2password = "NapOne";
-
-
 
             Customer _cust = new Customer()
             {
@@ -87,15 +108,7 @@ namespace CustomerTest
                 Password = "FetchOne"
             };
 
-            // Customer _cust2 = new Customer()
-            // {
 
-            //     CustID = customerID,
-            //     Name = custName,
-            //     Address = custAddress,
-            //     Email = custEmail,
-            //     Password = custpassword
-            // };
             _listOfCustomers.Add(_cust);
 
 
