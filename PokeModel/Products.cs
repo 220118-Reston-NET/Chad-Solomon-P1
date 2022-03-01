@@ -18,6 +18,14 @@ namespace PokeModel
             }
         }
 
+        private int _storeID;
+        public int StoreID
+        {
+            get { return _storeID; }
+            set { _storeID = value; }
+        }
+
+
         public int _prodID;
         public int ID
         {
