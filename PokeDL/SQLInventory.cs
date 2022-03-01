@@ -12,30 +12,30 @@ namespace PokeDL
             _connectionStrings = p_connectionStrings;
         }
 
-        public void AddInventory(int prodID)
-        {
+        // public void AddInventory(int prodID)
+        // {
 
-            string sqlQuery = @"update StoreInventory set Quantity = Quantity + 10 where prodID = @prodID";
+        //     string sqlQuery = @"update StoreInventory set Quantity = Quantity + 50 where prodID = @prodID";
 
-            // string sqlQuery = @"insert into sf.storeName, p.prodName, si.Quantity from StoreFront sf 
-            //     inner join StoreInventory si on sf.storeID = si.storeID 
-            //     inner join Product p on p.prodID = si.prodID";
+        //     // string sqlQuery = @"insert into sf.storeName, p.prodName, si.Quantity from StoreFront sf 
+        //     //     inner join StoreInventory si on sf.storeID = si.storeID 
+        //     //     inner join Product p on p.prodID = si.prodID";
 
-            using (SqlConnection con = new SqlConnection(_connectionStrings))
-            {
-                con.Open();
+        //     using (SqlConnection con = new SqlConnection(_connectionStrings))
+        //     {
+        //         con.Open();
 
-                SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@prodID", prodID);
-                //command.Parameters.AddWithValue("@Quantity", _quantity);
+        //         SqlCommand command = new SqlCommand(sqlQuery, con);
+        //         command.Parameters.AddWithValue("@prodID", prodID);
+        //         //command.Parameters.AddWithValue("@Quantity", _quantity);
 
-                command.ExecuteNonQuery();
+        //         command.ExecuteNonQuery();
 
-                // return s_inventory;
+        //         // return s_inventory;
 
 
-            }
-        }
+        //     }
+        // }
 
         public List<Inventory> GetAllInventory()
         {
