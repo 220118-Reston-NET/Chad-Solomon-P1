@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PokeBL;
+using PokeModel;
 
 
 namespace FurrBApi.Controllers
@@ -85,6 +86,50 @@ namespace FurrBApi.Controllers
                 //will return an appropriate status code:
                 return NotFound();
             }
+        }
+
+        [HttpGet("GetManagerInfo")]
+        public IActionResult GetAllManagers()
+        {
+            try
+            {
+                return Ok(_storeBL.GetAllManagers());
+            }
+            catch (SqlException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet("GetManagerById")]
+        public IActionResult GetManagerById([FromQuery] int _id)
+        {
+            try
+            {
+                return Ok(_storeBL.GetManagerById(_id));
+            }
+            catch (SqlException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPut("UpdateInventory")] //PUT creates a new resource or replaces a representation of the target resource with 
+                                     //the target payload.
+        public IActionResult Put([FromQuery] Inventory _productID)
+        {
+
+
+            // try
+            // {
+            return Ok(_storeBL.AddInventory(_productID));
+            // }
+            // catch (System.Exception exc)
+            // {
+
+            //     return Conflict(exc.Message);
+            // }
+
         }
 
         // PUT: api/StoreFront/5

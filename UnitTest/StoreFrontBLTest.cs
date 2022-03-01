@@ -12,6 +12,34 @@ namespace StoreFrontTest
     public class StoreFrontTest
     {
         [Fact]
+        public void Should_Add_Customer()
+        {
+            StoreFront _expectedStore = new StoreFront()
+            {
+                StoreName = "Bebop",
+                StoreAddress = "159 Bebop Avenue"
+            };
+
+            Mock<IStoreFrontRepo> _mockRepo = new Mock<IStoreFrontRepo>();
+
+            _mockRepo.Setup(repo => repo.AddStoreFront(_expectedStore)).Returns(_expectedStore);
+
+            IStoreFrontBL _storeBL = new StoreFrontBL(_mockRepo.Object);
+
+            StoreFront _actualStore = _expectedStore;
+
+            //Act
+            _actualStore = _storeBL.AddStoreFront(_actualStore);
+
+            //Assert
+            Assert.Same(_expectedStore, _actualStore);
+            Assert.Equal(_expectedStore.StoreName, _actualStore.StoreName);
+            Assert.Equal(_expectedStore.StoreAddress, _actualStore.StoreAddress);
+            Assert.NotNull(_actualStore);
+
+        }
+
+        [Fact]
         public void Should_Get_All_StoreFront()
         {
             //Arrange
@@ -46,19 +74,21 @@ namespace StoreFrontTest
 
         }
         [Fact]
-        public async Task Should_Get_Store_Front_By_Id()
+        public void Should_Get_Store_Front_By_Id()
         {
 
             //Assert
             List<StoreFront> _listOfStoreFronts = new List<StoreFront>();
 
-            StoreFront _newStore = new StoreFront()
+            StoreFront _Store = new StoreFront()
             {
                 StoreID = 1,
                 StoreName = "Bebop",
                 StoreAddress = "123 Bebop Lane"
             };
-            _listOfStoreFronts.Add(_newStore);
+
+            _listOfStoreFronts.Add(_Store);
+
 
             Mock<IStoreFrontRepo> _mockRepo = new Mock<IStoreFrontRepo>();
 
@@ -66,12 +96,12 @@ namespace StoreFrontTest
 
             IStoreFrontBL _storeBL = new StoreFrontBL(_mockRepo.Object);
 
-            StoreFront _expectedStore = _newStore;
+            StoreFront _expectedStore = _Store;
 
             StoreFront _actualStore = new StoreFront();
 
             //Act
-            _actualStore = _storeBL.SearchStoreFrontById(_newStore.StoreID);
+            _actualStore = _storeBL.SearchStoreFrontById(_Store.StoreID);
 
             //Assert
             Assert.Same(_expectedStore, _actualStore);
