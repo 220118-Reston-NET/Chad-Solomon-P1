@@ -33,14 +33,33 @@ namespace PokeBL
 
         }
 
-        public List<StoreFront> SearchStoreFrontById(int storeID)
+        public Inventory AddInventory(Inventory _productID)
+        {
+
+            return _srepo.AddInventory(_productID);
+        }
+
+        public Manager VerifyCustomer(string p_email, string p_password)
+        {
+
+            List<Manager> _listOfManagers = _srepo.GetAllManagers();
+
+
+            return _listOfManagers.Find(c => c.ManagerEmail.Equals(p_email) && c.ManagerPassword.Equals(p_password));
+
+
+
+
+        }
+
+
+        public StoreFront SearchStoreFrontById(int storeID)
         {
 
             List<StoreFront> listOfStoreFront = _srepo.GetAllStoreFronts();
 
-            return listOfStoreFront
-                .Where(store => store._storeID == storeID)
-                .ToList();
+            return listOfStoreFront.Find(store => store._storeID == storeID);
+
         }
 
         public List<StoreFront> SearchStoreFront(string s_name)
@@ -59,14 +78,25 @@ namespace PokeBL
 
         public List<StoreFront> GetAllStoreFronts()
         {
-            List<StoreFront> listOfStoreFronts = new List<StoreFront>();
+            //List<StoreFront> listOfStoreFronts = new List<StoreFront>();
 
             return _srepo.GetAllStoreFronts();
         }
 
-        // public List<Order> GetStoreOrderHistory(int p_storeID){
+        public List<Manager> GetAllManagers()
+        {
+            List<Manager> _listOfManagers = new List<Manager>();
 
-        //     List<Order> _listStoreOrders = Get
-        // }
+            return _srepo.GetAllManagers();
+        }
+
+        public Manager GetManagerById(int _id)
+        {
+            List<Manager> _listOfManagers = _srepo.GetAllManagers();
+
+            return _listOfManagers.Find(x => x.ManagerID.Equals(_id));
+        }
+
+
     }
 }
