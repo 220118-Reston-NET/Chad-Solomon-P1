@@ -97,7 +97,7 @@ namespace PokeDL
                         ManagerAddress = reader.GetString(2),
                         ManagerEmail = reader.GetString(3),
                         ManagerPassword = reader.GetString(4),
-                        StoreFrontID = reader.GetInt32(5)
+                        IsManager = reader.GetBoolean(5)
 
 
                     });
@@ -109,10 +109,13 @@ namespace PokeDL
 
         }
 
-        public Inventory AddInventory(Inventory prodID)
+        public Inventory AddInventory(Inventory _inv, string _email, string _managerPassword)
         {
 
-            string sqlQuery = @"update StoreInventory set Quantity = Quantity + 50 where prodID = @prodID";
+
+            string sqlQuery = @"update StoreInventory 
+                                set Quantity = @Quantity
+                                where prodID = @prodID and storeID = @StoreID";
 
             // string sqlQuery = @"insert into sf.storeName, p.prodName, si.Quantity from StoreFront sf 
             //     inner join StoreInventory si on sf.storeID = si.storeID 
@@ -123,17 +126,19 @@ namespace PokeDL
                 con.Open();
 
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.Parameters.AddWithValue("@prodID", prodID);
-                //command.Parameters.AddWithValue("@Quantity", _quantity);
+                command.Parameters.AddWithValue("@prodID", _inv.ProductID);
+                command.Parameters.AddWithValue("@Quantity", _inv.Quantity);
+                command.Parameters.AddWithValue("@StoreID", _inv.StoreID);
+
 
                 command.ExecuteNonQuery();
 
-                // return s_inventory;
+
 
 
             }
 
-            return prodID;
+            return _inv;
         }
 
 
