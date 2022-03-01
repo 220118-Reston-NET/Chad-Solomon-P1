@@ -3,12 +3,18 @@ namespace PokeBL
 {
     public interface IStoreFrontBL
     {
-        public StoreFront AddStoreFront(StoreFront c_StoreFront);
+        StoreFront AddStoreFront(StoreFront c_StoreFront);
 
-        public List<StoreFront> SearchStoreFront(string c_StoreFront);
-        public List<StoreFront> SearchStoreFrontById(int storeID);
+        Inventory AddInventory(Inventory _productID);
 
-        public List<StoreFront> GetAllStoreFronts();
+        List<StoreFront> SearchStoreFront(string c_StoreFront);
+        StoreFront SearchStoreFrontById(int storeID);
+
+        List<StoreFront> GetAllStoreFronts();
+
+        List<Manager> GetAllManagers();
+
+        Manager GetManagerById(int _id);
 
 
     }
