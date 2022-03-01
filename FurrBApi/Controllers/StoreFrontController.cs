@@ -116,19 +116,28 @@ namespace FurrBApi.Controllers
 
         [HttpPut("UpdateInventory")] //PUT creates a new resource or replaces a representation of the target resource with 
                                      //the target payload.
-        public IActionResult Put([FromQuery] Inventory _productID)
+        public IActionResult Put([FromQuery] Inventory _inv, string _email, string _managerPassword)
         {
 
+            if (_storeBL.IsManager(_email, _managerPassword))
+            {
+                try
+                {
+                    return Ok(_storeBL.AddInventory(_inv, _email, _managerPassword));
+                }
+                catch (System.Exception)
+                {
 
-            // try
-            // {
-            return Ok(_storeBL.AddInventory(_productID));
-            // }
-            // catch (System.Exception exc)
-            // {
+                    return BadRequest();
+                }
+            }
+            else
+            {
 
-            //     return Conflict(exc.Message);
-            // }
+                return StatusCode(401, "Access Denied");
+            }
+
+
 
         }
 
