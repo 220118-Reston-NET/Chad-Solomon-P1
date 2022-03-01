@@ -33,10 +33,10 @@ namespace PokeBL
 
         }
 
-        public Inventory AddInventory(Inventory _productID)
+        public Inventory AddInventory(Inventory _inv, string _email, string _managerPassword)
         {
 
-            return _srepo.AddInventory(_productID);
+            return _srepo.AddInventory(_inv, _email, _managerPassword);
         }
 
         public Manager VerifyCustomer(string p_email, string p_password)
@@ -88,6 +88,14 @@ namespace PokeBL
             List<Manager> _listOfManagers = new List<Manager>();
 
             return _srepo.GetAllManagers();
+        }
+
+        public bool IsManager(string _email, string _password)
+        {
+
+            Manager _man = GetAllManagers().Where(p => p.ManagerEmail.Equals(_email) && p.ManagerPassword.Equals(_password)).First();
+
+            return _man.IsManager;
         }
 
         public Manager GetManagerById(int _id)
