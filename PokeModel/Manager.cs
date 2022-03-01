@@ -28,6 +28,14 @@ namespace PokeModel
             }
         }
 
+        private bool _isManager;
+        public bool IsManager
+        {
+            get { return _isManager; }
+            set { _isManager = value; }
+        }
+
+
         private int _storeID;
         public int StoreFrontID
 
