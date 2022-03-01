@@ -27,7 +27,9 @@ namespace PokeBL
 
         public List<Product> GetAllProductByStoreID(int storeID)
         {
-            return _orepo.GetAllProductsByStoreID(storeID);
+            List<Product> _listOfProducts = _orepo.GetAllProduct();
+
+            return _listOfProducts.FindAll(p => p.StoreID.Equals(storeID));
         }
 
         public List<Product> SearchProduct(string c_product)
