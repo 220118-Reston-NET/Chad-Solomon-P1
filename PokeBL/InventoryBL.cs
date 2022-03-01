@@ -13,11 +13,11 @@ namespace PokeBL
             _irepo = s_inv;
         }
 
-        public void AddInventory(int _productID)
-        {
+        // public void AddInventory(int _productID)
+        // {
 
-            _irepo.AddInventory(_productID);
-        }
+        //     _irepo.AddInventory(_productID);
+        // }
 
         public List<Inventory> GetAllInventory()
         {
