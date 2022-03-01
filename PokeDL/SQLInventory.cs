@@ -47,9 +47,7 @@ namespace PokeDL
 
             // string sqlQuery = @"select sf.storeName, p.prodName, p.prodID, p.prodDescription, si.Quantity from StoreFront sf inner join StoreInventory si on sf.storeID = si.storeID inner join Product p on p.prodID = si.prodID";
 
-            string sqlQuery = @"select sf.storeID, sf.storeName, p.prodID, p.prodName, p.prodDescription, p.prodPrice, si.Quantity from StoreFront sf 
-                inner join StoreInventory si on sf.storeID = si.storeID 
-                inner join Product p on p.prodID = si.prodID";
+            string sqlQuery = @"select * from StoreInventory";
 
             // string sqlQuery = @"select sf.storeName, p.prodName, si.Quantity from StoreFront sf 
             //     inner join StoreInventory si on sf.storeID = si.storeID 
@@ -75,12 +73,8 @@ namespace PokeDL
                         // _storeID = reader.GetInt32(0),
                         // _productID = reader.GetInt32(1),
                         StoreID = reader.GetInt32(0),
-                        StoreName = reader.GetString(1),
-                        ProductID = reader.GetInt32(2),
-                        ProdName = reader.GetString(3),
-                        Description = reader.GetString(4),
-                        Price = reader.GetInt32(5),
-                        Quantity = reader.GetInt32(6)
+                        ProductID = reader.GetInt32(1),
+                        Quantity = reader.GetInt32(2)
 
                     });
 
