@@ -9,14 +9,14 @@ namespace PokeModel
             set { _storeID = value; }
         }
 
-        private string _storeName;
+        // private string _storeName;
 
-        public string StoreName
-        {
+        // public string StoreName
+        // {
 
-            get { return _storeName; }
-            set { _storeName = value; }
-        }
+        //     get { return _storeName; }
+        //     set { _storeName = value; }
+        // }
         private int _productID;
         public int ProductID
         {
@@ -27,31 +27,31 @@ namespace PokeModel
 
 
 
-        private string _prodName;
-        public string ProdName
-        {
+        // private string _prodName;
+        // public string ProdName
+        // {
 
-            get { return _prodName; }
-            set { _prodName = value; }
+        //     get { return _prodName; }
+        //     set { _prodName = value; }
 
-        }
+        // }
 
-        private string _description;
-        public string Description
-        {
+        // private string _description;
+        // public string Description
+        // {
 
-            get { return _description; }
-            set { _description = value; }
+        //     get { return _description; }
+        //     set { _description = value; }
 
-        }
+        // }
 
-        private int _price;
-        public int Price
+        // private int _price;
+        // public int Price
 
-        {
-            get { return _price; }
-            set { _price = value; }
-        }
+        // {
+        //     get { return _price; }
+        //     set { _price = value; }
+        // }
 
         private int _quantity;
         public int Quantity
@@ -63,11 +63,11 @@ namespace PokeModel
         }
 
 
-        public override string ToString()
-        {
-            return $"Store ID: {_storeID}\nProduct ID: {_productID}\nQuantity: {Quantity}\n";
-            // return $"Store Name: {StoreName}\nProduct Name: {ProdName}\nProduct ID: {_productID}\nDescription: {Description}\nQuantity: {Quantity}\n";
-        }
+        // public override string ToString()
+        // {
+        //     return $"Store ID: {_storeID}\nProduct ID: {_productID}\nQuantity: {Quantity}\n";
+        //     // return $"Store Name: {StoreName}\nProduct Name: {ProdName}\nProduct ID: {_productID}\nDescription: {Description}\nQuantity: {Quantity}\n";
+        // }
 
 
     }
