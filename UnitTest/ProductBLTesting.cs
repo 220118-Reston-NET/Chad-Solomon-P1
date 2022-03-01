@@ -10,6 +10,7 @@ namespace ProductTest
 {
     public class ProductTest
     {
+        [Fact]
         public void Should_Get_All_Product()
         {
             //Arrange
@@ -48,5 +49,46 @@ namespace ProductTest
 
 
         }
+
+        [Fact]
+        public void Should_Get_Product_By_Product_ID()
+        {
+            //Arrange
+
+            List<Product> _listOfProducts = new List<Product>();
+
+            Product _prod = new Product()
+            {
+                Name = "Leash",
+                ID = 1,
+                Description = "Nylon Material",
+                Price = 20
+
+            };
+
+            _listOfProducts.Add(_prod);
+
+            Mock<IProductRepo> _mockRepo = new Mock<IProductRepo>();
+
+            _mockRepo.Setup(p => p.GetAllProduct()).Returns(_listOfProducts);
+
+            IProductBL _prodBL = new ProductBL(_mockRepo.Object);
+
+            Product _expectedProduct = _prod;
+
+            Product _actualProduct = new Product();
+
+            //Act
+            _actualProduct = _prodBL.GetProductByID(_prod.ID);
+
+            //Assert
+            Assert.Same(_expectedProduct, _actualProduct);
+            Assert.Equal(_expectedProduct.Name, _actualProduct.Name);
+            Assert.Equal(_expectedProduct.ID, _actualProduct.ID);
+            Assert.Equal(_expectedProduct.Description, _actualProduct.Description);
+            Assert.Equal(_expectedProduct.Price, _actualProduct.Price);
+        }
+
+
     }
 }
