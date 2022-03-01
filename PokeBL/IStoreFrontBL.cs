@@ -5,7 +5,7 @@ namespace PokeBL
     {
         StoreFront AddStoreFront(StoreFront c_StoreFront);
 
-        Inventory AddInventory(Inventory _productID);
+        Inventory AddInventory(Inventory _inv, string _email, string _managerPassword);
 
         List<StoreFront> SearchStoreFront(string c_StoreFront);
         StoreFront SearchStoreFrontById(int storeID);
@@ -15,6 +15,8 @@ namespace PokeBL
         List<Manager> GetAllManagers();
 
         Manager GetManagerById(int _id);
+
+        bool IsManager(string _email, string _password);
 
 
     }
