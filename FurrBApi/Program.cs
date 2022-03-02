@@ -1,7 +1,12 @@
+global using Serilog;
 using PokeBL;
 using PokeDL;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("./Logs/user.txt")
+    .CreateLogger();
 
 // Add services to the container.
 
