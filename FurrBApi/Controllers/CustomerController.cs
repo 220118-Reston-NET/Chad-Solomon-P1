@@ -256,18 +256,28 @@ namespace FurrBApi.Controllers
         {
             List<Inventory> _listOfInventory = new List<Inventory>();
             Inventory _inventory = new Inventory();
+            List<LineItems> _lineItems = new List<LineItems>();
+            _lineItems = _cart;
 
             _listOfInventory = _invBL.GetAllInventoryByStoreID(_orderLocation);
             //_listOfInventory.Find(p => p.ProductID == _cart[0].Product).Quantity < _cart[0].Quantity
 
-            if (_listOfInventory.Find(p => p.ProductID == _cart[0].Product).Quantity < _cart[0].Quantity)
+            //****Maybe try to put the listoFInventory** or maybe the _cart in a foreach loop so we can 
+            //access productID and quantity properties w/o indexing because if I make the second item have  more 
+            // quantity than is there it will still place the order.
+
+            //*** Also, could maybe use a for loop and use the i variable to increment the _cart[i]
+
+            //***This solution for Order Verification Works even if the second product placed is over quantity
+            foreach (var item in _cart)
             {
+                if (_listOfInventory.Find(p => p.ProductID == item.Product).Quantity < item.Quantity)
+                {
 
-                return NotFound();
+                    return NotFound();
+                }
+
             }
-
-
-
 
             try
             {
