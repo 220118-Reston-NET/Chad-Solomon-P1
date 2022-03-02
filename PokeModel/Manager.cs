@@ -41,7 +41,14 @@ namespace PokeModel
 
         {
             get { return _storeID; }
-            set { _storeID = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _storeID = value;
+                }
+
+            }
         }
 
         private string? _managerName; //{ get; set; }
