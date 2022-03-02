@@ -254,26 +254,19 @@ namespace FurrBApi.Controllers
 
         public IActionResult Post([FromQuery] int _orderLocation, int _custID, List<LineItems> _cart)
         {
-            //List<Inventory> _listOfInventory = new List<Inventory>();
-            //Inventory _inventory = new Inventory();
-            //_listOfInventory = _invBL.GetAllInventoryByStoreID(_orderLocation);
+            List<Inventory> _listOfInventory = new List<Inventory>();
+            Inventory _inventory = new Inventory();
 
-            // foreach (var item in _listOfInventory)
-            // {
-            //     _listOfInventory.Find(p => p.ProductID.Equals(_cart[0].Product == _cart[0].Quantity));
-            // if (_listOfInventory[0].Quantity < _cart[0].Quantity)
-            // {
+            _listOfInventory = _invBL.GetAllInventoryByStoreID(_orderLocation);
+            //_listOfInventory.Find(p => p.ProductID == _cart[0].Product).Quantity < _cart[0].Quantity
 
-            //     Console.WriteLine("sorry we do not have that item");
-            //     return Conflict();
+            if (_listOfInventory.Find(p => p.ProductID == _cart[0].Product).Quantity < _cart[0].Quantity)
+            {
 
-            // }
-            // }
-
-            // _listOfInventory = _invBL.GetAllInventoryByStoreID(_orderLocation);
+                return NotFound();
+            }
 
 
-            // if (_listOfInventory.Find(p => p.ProductID == _cart[0].Product))
 
 
             try
