@@ -4,7 +4,7 @@
     {
 
 
-        public int _custID { get; set; }
+        public int _custID;
         public int CustID
         {
             get { return _custID; }
