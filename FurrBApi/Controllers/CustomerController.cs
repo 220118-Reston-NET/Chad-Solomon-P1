@@ -226,7 +226,7 @@ namespace FurrBApi.Controllers
         // POST: api/Customer
         [HttpPost("AddCustomer")] //Post sends data to the server. So here we are sending customer information to the server.
                                   //we are obtaining the customer info via a form body.
-        public async Task<IActionResult> Post([FromBody] Customer p_cust)
+        public async Task<IActionResult> Post([FromQuery] Customer p_cust)
         {
 
             try
