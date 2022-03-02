@@ -3,7 +3,19 @@ namespace PokeModel
 
     public class LineItems
     {
-        public int _orderID;
+        private int _storeID;
+        public int StoreID
+        {
+            get { return _storeID; }
+            set
+            {
+                if (value > 0)
+                {
+                    _storeID = value;
+                }
+            }
+        }
+
         private int _product;
 
         public int Product
@@ -49,10 +61,10 @@ namespace PokeModel
         }
 
 
-        public override string ToString()
-        {
-            return $"Product ID: {Product}\nQuantity: {Quantity}\n";
-        }
+        // public override string ToString()
+        // {
+        //     return $"Product ID: {Product}\nQuantity: {Quantity}\n";
+        // }
 
         // public LineItems()
         // {
