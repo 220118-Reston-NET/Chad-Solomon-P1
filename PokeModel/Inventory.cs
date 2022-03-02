@@ -6,7 +6,13 @@ namespace PokeModel
         public int StoreID
         {
             get { return _storeID; }
-            set { _storeID = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _storeID = value;
+                }
+            }
         }
 
         // private string _storeName;
@@ -21,7 +27,14 @@ namespace PokeModel
         public int ProductID
         {
             get { return _productID; }
-            set { _productID = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _productID = value;
+                }
+
+            }
         }
 
 
@@ -58,7 +71,13 @@ namespace PokeModel
         {
 
             get { return _quantity; }
-            set { _quantity = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    _quantity = value;
+                }
+            }
 
         }
 
