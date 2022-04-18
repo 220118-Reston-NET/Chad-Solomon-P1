@@ -49,7 +49,7 @@ namespace FurrBApi.Controllers
         }
 
         [HttpGet("GetAllInventory")]
-        public IActionResult GetAllInventoryByStoreID()
+        public IActionResult GetAllInventory()
         {
             try
             {
